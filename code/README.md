@@ -5,6 +5,6 @@
 4. python train_recvae.py
 5. python train_hvamp.py
 6. python inference_models.py
-7. voting.py
+7. python voting.py
 
 ---
