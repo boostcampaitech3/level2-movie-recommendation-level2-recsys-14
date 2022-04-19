@@ -1,0 +1,30 @@
+
+data_path: /opt/ml/input/data/
+dataset: recbole
+field_separator: "\t"
+USER_ID_FIELD: user
+ITEM_ID_FIELD: item
+RATING_FIELD: rating
+TIME_FIELD: timestamp
+show_progress: false
+
+load_col:
+    inter: [user, item, rating, timestamp]
+    user: [user]
+    item: [item]
+
+epochs: 5
+learning_rate: 0.01
+user_inter_num_interval: "[0,inf)"
+item_inter_num_interval: "[0,inf)"
+filter_inter_by_user_or_item: false
+neg_sampling:
+    uniform: 1
+eval_args:
+    split: {'RS': [4, 1, 1]}
+    group_by: user
+    order: TO
+    mode: uni50
+metrics: ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision', 'MAP']
+topk: 10
+valid_metric: Recall@10
