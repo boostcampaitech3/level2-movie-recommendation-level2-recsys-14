@@ -154,7 +154,18 @@ class Encoder(nn.Module):
 RecVAE
 """
 
+
 class RecVAE(nn.Module):
+    """
+    Container Module for RecVAE
+
+    RecVAE: New Variational Autoencoder for Top-N Recommendations with Implicit Feedback
+    See New Variational Autoencoder
+    https://arxiv.org/abs/1912.11160
+
+    Reference
+    https://github.com/ilya-shenbin/RecVAE
+    """
     def __init__(self, hidden_dim, latent_dim, input_dim):
         super(RecVAE, self).__init__()
 
@@ -194,13 +205,15 @@ class RecVAE(nn.Module):
     def update_prior(self):
         self.prior.encoder_old.load_state_dict(deepcopy(self.encoder.state_dict()))
 
+
 """
 Multi Denoising AutoEncoder
 """
 
+
 class MultiDAE(nn.Module):
     """
-    Container module for Multi-DAE.
+    Container module for Multi-DAE
 
     Multi-DAE : Denoising Autoencoder with Multinomial Likelihood
     See Variational Autoencoders for Collaborative Filtering
@@ -257,9 +270,10 @@ class MultiDAE(nn.Module):
 Multi Variational AutoEncoder
 """
 
+
 class MultiVAE(nn.Module):
     """
-    Container module for Multi-VAE.
+    Container module for Multi-VAE
 
     Multi-VAE : Variational Autoencoder with Multinomial Likelihood
     See Variational Autoencoders for Collaborative Filtering
@@ -360,7 +374,19 @@ class MultiVAE(nn.Module):
 H+vamp with 1 hidden layer in EVCF
 """
 
+
 class Hvamp(Model):
+    """
+    Container Module for H+vamp VAE
+
+    H+Vamp VAE: Hierarchical VampPrior VAE for Collaborative Filtering
+    See Hierarchical VampPrior VAE for Collaborative Filtering
+    https://arxiv.org/abs/1905.03375
+
+    Reference
+    https://github.com/psywaves/EVCF
+    """
+
     def __init__(self, args):
         super(Hvamp, self).__init__(args)
 
@@ -428,15 +454,14 @@ class Hvamp(Model):
         # add pseudo-inputs for VampPrior
         self.add_pseudoinputs()
 
-
     # AUXILIARY METHODS
     def calculate_loss(self, x, beta=1., average=False):
-        '''
+        """
         :param x: input image(s)
         :param beta: a hyperparam for warmup
         :param average: whether to average loss or not
         :return: value of a loss function
-        '''
+        """
         # pass through VAE
         x_mean, x_logvar, z1_q, z1_q_mean, z1_q_logvar, \
         z2_q, z2_q_mean, z2_q_logvar, z1_p_mean, z1_p_logvar = self.forward(x)
@@ -571,7 +596,13 @@ EASE
 
 class EASE:
     """
-    Embarrassingly Shallow Autoencoders model class
+    Container Module for Embarrassingly Shallow Autoencoders
+
+    See Embarrassingly Shallow Autoencoders for Collaborative Filtering
+    https://arxiv.org/abs/1905.03375
+
+    Reference
+    https://www.kaggle.com/code/lucamoroni/ease-implementation
     """
 
     def __init__(self, lambda_):
@@ -588,7 +619,6 @@ class EASE:
         G[diag, diag] += self.lambda_
         P = np.linalg.inv(G)
 
-        # B = P * (X^T * X − diagMat(γ))
         self.B = P / -np.diag(P)
         min_dim = min(*self.B.shape)
         self.B[range(min_dim), range(min_dim)] = 0

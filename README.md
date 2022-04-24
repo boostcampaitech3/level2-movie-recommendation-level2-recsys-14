@@ -1,6 +1,6 @@
 # [Recsys-14] Movie Recommendation
 
-
+<br/>
 
 ## 📚 프로젝트 개요
 
@@ -8,17 +8,17 @@
 
 Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으로 사용자가 다음에 선호할 만한 영화를 예측하는 최적의 모델을 개발합니다.
 
+<br/>
 
-
-
+<br/>
 
 ### 📈 프로젝트 목표
 
 주어진 여러 추천 시스템 모델을 서로 비교해보고, 이를 통해 Sequential data와 static data 각각에 관한 추천 시스템의 차이를 이해합니다. 또한 대회에서 주어지는 데이터 분석을 통해 최적의 모델과 추천 방식을 찾고, 이를 바탕으로 모델의 성능과 normalized recall@10을 높이는 것을 목표로 합니다.
 
+<br/>
 
-
-
+<br/>
 
 ### 🗞 사용 데이터
 
@@ -34,34 +34,32 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
 - Implicit feedback 기반의 sequential recommendation 시나리오를 상정합니다.
 - 사용자의 time-ordered sequence에서 일부 item이 누락(dropout)된 상태입니다.
 
+<br/>
 
-
-
+<br/>
 
 ### 🔑 프로젝트 특징
 
 - timestamp를 바탕으로 사용자의 순차적인 이력과 Implicit feedback을 고려합니다.
 - 1~5점 평점(Explicit feedback) 기반의 행렬을 사용한 협업 필터링 문제와 차별화되었습니다.
 
+<br/>
 
-
-
+<br/>
 
 ### 🛎 요구사항
 
-사용자의 영화 시청 이력과 영화의 장르, 감독, 개봉연도 등 side-information을 활용하여 다음에 시청할 가능성이 높은 영화 상위 10개를 추천합니다.
+사용자의 영화 시청 이력과 영화의 장르, 감독, 개봉연도 등 side-information을 활용하여 다음에 시청할 가능성이 높은 영화 상위 10개를 추천합니다.<br/>
 
-
-
-
+<br/>
 
 ### 📌 평가 방법
 
 사전에 Movielens-20M 데이터에서 추출해놓은 ground-truth 아이템들을 고려하여 정규화된 Recall@10을 계산합니다.
 
+<br/>
 
-
-
+<br/>
 
 ## 프로젝트 구조
 
@@ -69,9 +67,9 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
 
 ![mermaid-diagram-20220417234600](https://cdn.jsdelivr.net/gh/Glanceyes/Image-Repository/2022/04/24/20220424_1650794858.png)
 
+<br/>
 
-
-
+<br/>
 
 ### 디렉토리 구조
 
@@ -119,9 +117,9 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
     └── utils.py
 ```
 
+<br/>
 
-
-
+<br/>
 
 ## 모델과 실험 내용
 
@@ -136,9 +134,9 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
   - 각 아이템 별 score가 voting에 반영될 수 있도록 순위에 따른 가중치를 부여했습니다.
   - 결과적으로 앙상블 모델의 비중을 2로 두고 순위를 반영한 것과, EASE에 순위를 반영한 것, Recvae와 h+vamp에는 아무 처리를 하지 않고 Hard Voting한 성능이 가장 좋았습니다.
 
+<br/>
 
-
-
+<br/>
 
 ## 💻 활용 도구 및 환경
 
@@ -151,9 +149,9 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
 - 피드백 및 의견 공유
     - 카카오톡, Notion, Zoom  
 
+<br/>
 
-
-
+<br/>
 
 ## 👩🏻‍💻👨🏻‍💻 팀원 소개
 
@@ -206,7 +204,7 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
    </tr>
 </table>
 
-  
+  <br/>
 
 | 팀원   | 역할                                                         |
 | ------ | ------------------------------------------------------------ |
@@ -216,32 +214,32 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
 | 이선호 | Autoencoder 기반 모델 탐색(H+vamp, EASE) 및 분석, 코드 모듈화 및 리팩토링, k-fold 실험 |
 | 진완혁 | 데이터 EDA, 알고리즘 탐색 및 적용, 하이퍼 파라미터 튜닝을 통한 모델 성능 개선, 모델간 성능 실험 |
 
+<br/>
 
-
-
+<br/>
 
 ## 📝 Reference
 
-
+<br/>
 
 ### Multi-VAE with Side Information
 
 https://arxiv.org/pdf/1807.05730.pdf
 
-
+<br/>
 
 ### H+vamp
 
 https://github.com/psywaves/EVCF
 
-
+<br/>
 
 ### EASE
 
 https://www.kaggle.com/code/lucamoroni/ease-implementation
 
-
+<br/>
 
 ### RecVAE
 
- https://github.com/ilya-shenbin/RecVAE/blob/master/model.py
+ https://github.com/ilya-shenbin/RecVAE
