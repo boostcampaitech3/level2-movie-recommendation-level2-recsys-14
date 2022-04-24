@@ -126,10 +126,10 @@ Movielens-20M 기반의 사용자의 영화 시청 이력 데이터를 바탕으
 ## 모델과 실험 내용
 
 - 이번 프로젝트에서 실험한 단일 모델 종류는 Autoencoder 기반의 Multi-VAE, Multi-DAE, RecVAE, H+vamp, EASE를 사용했으며, 단일 모델 간 성능을 고려하여 최종 결과에 사용한 모델은 RecVAE, H+vamp, EASE입니다.
-  - SASRec, BERT4Rec, S3Rec은 sequential data에 강한 모델로 알려져 있지만, 이번 프로젝트의 데이터는 단순 sequential data가 아니어서 예상보다 좋지 않은 결과가 나왔으며, 이렇나 이유로 좀 더 general recommendation에 적합한 모델을 탐색했다.
+  - SASRec, BERT4Rec, S3Rec은 sequential data에 강한 모델로 알려져 있지만, 이번 프로젝트의 데이터는 단순 sequential data가 아니어서 예상보다 좋지 않은 결과가 나왔습니다. 그래서 좀 더 general recommendation에 적합한 모델을 탐색했습니다.
   - Multi-VAE, Multi-DAE에서 영화의 genre를 side-information으로 사용했습니다.
   - H+vamp는 기존의 VAE에 hierarchical stochastic unit과 vamp prior를 더한 모델이며, Multi-VAE의 한계를 극복하고자 적용한 모델입니다. 기존의 VAE에서 사전확률 분포인 $p(z)$를 추정하기 위해 사용한 정규 분포는 제약 사항이 많은데, 이를 ELBO를 최대화 하는 optimal prior의 근사치로 변경하여 좀 더 유연한 VampPrior를 사용했습니다. 결과적으로 Multi-VAE와 Multi-DAE를 앙상블 했을 때보다 성능이 향상되었다.
-  - EASE(Embarrassingly Shallow Autoencoders for Sparse Data)는 파라미터의 해를 구하는 것이 closed form solution이며, 유저의 수가 증가할수록 loss function을 최소화하는 파라미터를 구하는 과정에서 쓰이는 Gram matrix의 계수가 커져서 파라미터를 구하는 error가 줄어들어 cold start problem에 강한 모델이다.
+  - EASE(Embarrassingly Shallow Autoencoders for Sparse Data)는 파라미터의 해를 구하는 것이 closed form solution이며, 유저의 수가 증가할수록 loss function을 최소화하는 파라미터를 구하는 과정에서 쓰이는 Gram matrix의 계수가 커져서 파라미터를 구하는 error가 줄어들어 cold start problem에 강한 모델로 알려져 있습니다.
     - 특히 이번 프로젝트에서 다른 모델에 비해 단일 성능이 가장 좋게 나왔던 것은 아무래도 대회에서 사용한 데이터가 단순 sequential data가 아니라 일부분이 임의로 마스킹 되도록 전처리 되어서 좀 더 sparse data에 가까워져 cold start problem이 발생했는데, EASE는 이러한 현상에 강한 이유로 추측됩니다.
 - Ensemble 시 RecVAE, H+vamp, EASE와 세 모델을 합친 Ensemble SOTA 모델로 Hard Voting을 진행했습니다.
   - 성능이 가장 좋았던 앙상블 모델 결과에 가장 많은 가중치를 부여했습니다.
